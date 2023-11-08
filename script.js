@@ -37,29 +37,32 @@ container.addEventListener("click", handleClick);
 
 function createMarkup(arr)
 {
-    return arr.map(({id, img, name, price}) => `<li data-id=${id}" class="item js-product-item">
+    return arr.map(({id, img, name, price}) => `<li data-id="${id}" class="item js-product-item">
     <img src="${img}" alt="${name}" width="300">
     <h2>${name}</h2>
     <p>${price}</p>
     </li>`).join("")
 }
 
-function handleClick(event){
-    if(event.target === event.currentTarget){
+function handleClick(event) {
+    if(event.target === event.currentTarget) {
         return;
     }
+    
     const currentProduct = event.target.closest(".js-product-item");
     const id = currentProduct.dataset.id;
-    const product = products.find(({id:productId}) => productId === Number(id));
+    const product = products.find(({ id: productId }) => productId === Number(id));
+
     const instance = basicLightbox.create(`
-    <div class="modal>
-    <img src="${product.img}" alt="${product.name}"
-    <h2>${product.name}</h2>
-    <h3>${product.price}</h3>
-    <p>${product.description}</p>
-    </div>`)
+        <div class="modal">
+            <img src="${product.img}" alt="${product.name}">
+            <h2>${product.name}</h2>
+            <h3>${product.price}</h3>
+            <p>${product.description}</p>
+        </div>
+    `)
 
-
-instance.show();
-
+    instance.show()
 }
+
+document.body.style.backgroundColor = "black";
